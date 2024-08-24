@@ -41,3 +41,4 @@ jobs:
       if: success()
       with:
         report_paths: build/Testing/**/*.xml
+        include_passed: true
