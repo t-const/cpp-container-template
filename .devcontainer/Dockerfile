@@ -10,8 +10,16 @@ RUN if [ "${REINSTALL_CMAKE_VERSION_FROM_SOURCE}" != "none" ]; then \
     fi \
     && rm -f /tmp/reinstall-cmake.sh
 
+# Add additional dependencies
 RUN sudo apt update && sudo apt upgrade; \
     sudo apt install clang
+
+# Install additional cmake dependencies
+RUN git clone https://github.com/google/googletest.git /tmp/googletest \
+    && cd /tmp/googletest \
+    && cmake -S . -B build \
+    && cmake --build build --target install \
+    && rm -rf /tmp/googletest
 
 # [Optional] Uncomment this section to install additional vcpkg ports.
 # RUN su vscode -c "${VCPKG_ROOT}/vcpkg install <your-port-name-here>"

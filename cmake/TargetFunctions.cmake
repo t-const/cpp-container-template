@@ -1,4 +1,5 @@
 include(CTest)
+include(GoogleTest)
 
 # Function CreateLibrary
 #
@@ -147,14 +148,8 @@ function(CreateTest targetName sourceFolder)
       "${sourceFolder}"
    )
 
-   get_target_property(testEnv ${testName} VS_DEBUGGER_ENVIRONMENT)
-
    # Add Google / CTest tests
    # SKIP_DEPENDENCY avoid CMake to be relaunched automatically when a c++ source file is modified
    gtest_add_tests(TARGET ${testName} TEST_LIST testCases SKIP_DEPENDENCY)
 
-   set_tests_properties(${testCases} PROPERTIES 
-      ENVIRONMENT "${testEnv}" 
-      WORKING_DIRECTORY $<TARGET_FILE_DIR:${testName}>
-   )
 endfunction()

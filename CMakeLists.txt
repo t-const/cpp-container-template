@@ -48,3 +48,6 @@ target_link_libraries(
     PRIVATE
         ${libraryName}
 )
+
+# Add the tests subdirectory
+add_subdirectory(tests)
