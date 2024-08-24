@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+permissions:
+  checks: write
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -31,10 +34,12 @@ jobs:
           cd build
           cmake ..
           cmake --build .
-          ctest --output-on-failure -T Test
+          ctest --output-junit Testing/junit.xml
 
     - name: Test report
       uses: mikepenz/action-junit-report@v4
       if: success()
       with:
-        report_paths: build/Testing/**/*.xml
+        report_paths: 'build/Testing/**/*.xml'
+        include_passed: true
+        job_summary: true
