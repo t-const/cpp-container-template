@@ -34,7 +34,7 @@ jobs:
           cd build
           cmake ..
           cmake --build .
-          ctest --output-on-failure -T Test
+          ctest --output-junit Testing/junit.xml
 
     - name: Test report
       uses: mikepenz/action-junit-report@v4
@@ -42,4 +42,3 @@ jobs:
       with:
         report_paths: 'build/Testing/**/*.xml'
         include_passed: true
-        detailed_summary: true
