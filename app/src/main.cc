@@ -2,7 +2,7 @@
 
 int main()
 {
-    std::clog << "Executing app..." << std::endl;
-    
-    return 0;
+  std::clog << "Executing app..." << std::endl;
+
+  return 0;
 }
