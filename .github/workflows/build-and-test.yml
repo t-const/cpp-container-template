@@ -34,10 +34,7 @@ jobs:
           ctest --output-on-failure -T Test
 
     - name: Test report
-      uses: dorny/test-reporter@v1
+      uses: mikepenz/action-junit-report@v4
+      if: success()
       with:
-        if: success()
-        name: GTest results
-        path: build/Testing/**/*.xml
-        reporter: jest-junit
-        fail-on-error: true
+        report_paths: build/Testing/**/*.xml
