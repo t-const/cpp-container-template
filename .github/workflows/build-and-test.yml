@@ -33,7 +33,11 @@ jobs:
           cmake --build .
           ctest --output-on-failure -T Test
 
-    - name: Upload Test Results to GitHub Actions
-      uses: actions/upload-test-report@v1
+    - name: Test report
+      uses: dorny/test-reporter@v1
       with:
-        report_paths: build/Testing/**/*.xml
+        if: success()
+        name: GTest results
+        path: build/Testing/**/*.xml
+        reporter: jest-junit
+        fail-on-error: true
