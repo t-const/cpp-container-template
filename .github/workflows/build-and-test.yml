@@ -36,5 +36,7 @@ jobs:
     - name: Test report
       uses: mikepenz/action-junit-report@v4
       if: success()
+      permissions:
+        checks: write
       with:
         report_paths: build/Testing/**/*.xml
