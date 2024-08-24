@@ -33,8 +33,7 @@ jobs:
           cmake --build .
           ctest --output-on-failure -T Test
 
-    - name: Upload Test Results
-      uses: actions/upload-artifact@v3
+    - name: Upload Test Results to GitHub Actions
+      uses: actions/upload-test-report@v1
       with:
-        name: test-results
-        path: build/Testing/**/*.xml
+        report_paths: build/Testing/**/*.xml
