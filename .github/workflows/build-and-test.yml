@@ -31,4 +31,10 @@ jobs:
           cd build
           cmake ..
           cmake --build .
-          ctest
+          ctest --output-on-failure -T Test
+
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: build/Testing/**/*.xml
